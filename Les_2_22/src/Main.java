@@ -53,8 +53,16 @@ public class Main{
 
         // Посчитать количество рабочих дней между датами
         int working_day = 0;
-        calendar.setTime(date);
-        while (calendar.getTime().before(date2)) {
+        Calendar calendar2 = Calendar.getInstance();
+        calendar2.setTime(date2);
+        if (calendar.getTime().equals(calendar2.getTime())) {
+            System.out.println("Количество рабочих дней между датами: " + working_day);
+        }
+        if (calendar.getTime().after(calendar2.getTime())) {
+            calendar.setTime(date2);
+            calendar2.setTime(date);
+        }
+        while (calendar.getTime().before(calendar2.getTime())) {
             int week_day = calendar.get(Calendar.DAY_OF_WEEK);
             if (week_day != Calendar.SATURDAY && week_day != Calendar.SUNDAY) {
                 working_day++;
